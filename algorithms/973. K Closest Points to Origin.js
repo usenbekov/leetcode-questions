@@ -98,7 +98,7 @@ var kClosest = function(points, K) {
   }
   
   MaxHeap.prototype.isBigger = function(pos0, pos1) {
-    return this.comparator(this.data[pos0], this.data[pos1]) > 1 ? true : false;
+    return this.comparator(this.data[pos0], this.data[pos1]) > 0 ? true : false;
   }
   
   MaxHeap.prototype.heapify = function(pos) {
