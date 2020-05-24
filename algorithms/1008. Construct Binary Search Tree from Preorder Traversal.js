@@ -31,6 +31,30 @@ The values of preorder are distinct.
  * @return {TreeNode}
  */
 var bstFromPreorder = function(preorder) {
+  //return solution1(preorder);
+  return solution2(preorder);
+};
+
+var solution2 = function(preorder) {
+  const root = new TreeNode(preorder[0]);
+  const stack = [root];
+  for (let i = 1; i < preorder.length; i++) {
+    const node = new TreeNode(preorder[i]);
+    let top = stack[stack.length-1];
+    if (node.val < top.val) {
+      top.left = node;
+    } else {
+      while (stack.length > 0 && stack[stack.length-1].val < node.val) {
+        top = stack.pop();
+      }
+      top.right = node;
+    }
+    stack.push(node);
+  }
+  return root;
+}
+
+var solution1 = function(preorder) {
   if (preorder.length < 1) return null;
   let index = 0;
   const createNode = (min, max) => {
@@ -44,6 +68,8 @@ var bstFromPreorder = function(preorder) {
     return node;
   }
   return createNode(null, null);
-};
+}
+
+
 
 
